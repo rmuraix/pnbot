@@ -4,6 +4,10 @@ version = 1
 name = "javascript"
 enabled = true
 
+  [analyzers.meta]
+  environment = ["nodejs","browser","jest"]
+  style_guide = "google"
+
 [[analyzers]]
 name = "test-coverage"
 enabled = true
