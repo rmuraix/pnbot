@@ -1,0 +1,25 @@
+{
+  "name": "pnbot",
+  "version": "1.0.0",
+  "description": "Pay Notificaion Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmuraix/pnbot.git"
+  },
+  "author": "Ryota Murai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmuraix/pnbot/issues"
+  },
+  "homepage": "https://github.com/rmuraix/pnbot#readme",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.55"
+  },
+  "devDependencies": {
+    "jest": "^29.1.2"
+  }
+}
