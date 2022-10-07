@@ -1,8 +1,8 @@
-function getEvents(myCal:GoogleAppsScript.Calendar.Calendar):GoogleAppsScript.Calendar.CalendarEvent[]{
+function getEvents(myCal:GoogleAppsScript.Calendar.Calendar, startMonth:number):GoogleAppsScript.Calendar.CalendarEvent[]{
 
   const dt = new Date();
-  const startDate = new Date(dt.getFullYear(), dt.getMonth() - 1, 1); // 1st of last month
-  const endDate = new Date(dt.getFullYear(), dt.getMonth(), 0); // Last day of last month
+  const startDate = new Date(dt.getFullYear(), dt.getMonth() - startMonth, 1); // 1st day of month
+  const endDate = new Date(dt.getFullYear(), dt.getMonth() - (startMonth - 1), 0, 23, 59,59); // Last day of month
 
   let events = myCal?.getEvents(startDate, endDate);
 
@@ -21,14 +21,14 @@ function getCalender():GoogleAppsScript.Calendar.Calendar{
   return myCal;
 }
 
-function getHour(events:GoogleAppsScript.Calendar.CalendarEvent[]):number {
+function getHours(events:GoogleAppsScript.Calendar.CalendarEvent[],name:string):number {
   
   let workingHours:number = 0;
 
   for (let i of events) {
-
-    workingHours += (i.getEndTime().getTime() - i.getStartTime().getTime())/3600000;
-
+    if (i.getTitle() == name){
+      workingHours += (i.getEndTime().getTime() - i.getStartTime().getTime())/3600000;
+    }
   }
 
   return workingHours;
