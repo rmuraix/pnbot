@@ -20,7 +20,5 @@ function main(): void{
     const lastMonth_wages = (lastMonth_workingHours1 * hourlyWage1) + (lastMonth_workingHours2 * hourlyWage2);
     const monthBeforeLast_wages = (monthBeforeLast_workingHours1 * hourlyWage1) + (monthBeforeLast_workingHours2 * hourlyWage2);
 
-    console.log("先月%d円", lastMonth_wages);
-    console.log("先々月%d円", monthBeforeLast_wages);
-
+    postToLine(lastMonth_wages,monthBeforeLast_wages);
 }
