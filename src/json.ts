@@ -1,10 +1,9 @@
 function generateJSON(wages1: number, wages2: number, userID: string) {
-  const wages_diff = wages2 - wages1;
   let textOf_diff: string;
-  if (wages_diff > 0) {
-    textOf_diff = "-￥" + Math.abs(wages_diff);
+  if (wages1 < wages2) {
+    textOf_diff = "-￥" + Math.abs(wages1 - wages2);
   } else {
-    textOf_diff = "￥" + wages_diff;
+    textOf_diff = "+￥" + (wages1 - wages2);
   }
 
   // For Flex Message https://developers.line.biz/en/docs/messaging-api/using-flex-messages/
