@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 18
       - name: Setup Clasp
-        uses: rmuraix/setup-clasp@6c50c4b921a5d7eff05dc7ecd7218d53f325e1af
+        uses: rmuraix/setup-clasp@edf6a6880b37d4fa2e5612b0fc0671a181d87253
         with:
           clasp-version: 2.4.2
           access-token: ${{ secrets.ACCESS_TOKEN }}
