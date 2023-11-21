@@ -13,18 +13,18 @@ function main(): void {
   const lastMonth_workingHours2 = getHours(lastMonth_Events, eventName2);
   const monthBeforeLast_workingHours1 = getHours(
     monthBeforeLast_Events,
-    eventName1
+    eventName1,
   );
   const monthBeforeLast_workingHours2 = getHours(
     monthBeforeLast_Events,
-    eventName2
+    eventName2,
   );
 
   const hourlyWage1: number = parseInt(
-    scriptProperties.getProperty("WAGE1") || "0"
+    scriptProperties.getProperty("WAGE1") || "0",
   );
   const hourlyWage2: number = parseInt(
-    scriptProperties.getProperty("WAGE2") || "0"
+    scriptProperties.getProperty("WAGE2") || "0",
   );
 
   const lastMonth_wages =
