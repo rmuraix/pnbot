@@ -1,6 +1,6 @@
 function postToLine(
   lastMonth_wages: number,
-  monthBeforeLast_wages: number
+  monthBeforeLast_wages: number,
 ): void {
   const scriptProperties = PropertiesService.getScriptProperties();
   const userID = scriptProperties.getProperty("USER_ID") || "";
