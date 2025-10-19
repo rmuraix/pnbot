@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/rmuraix/pnbot#readme",
   "dependencies": {
-    "@types/google-apps-script": "^1.0.55"
+    "@types/google-apps-script": "^2.0.0"
   },
   "devDependencies": {
     "jest": "29.7.0"
