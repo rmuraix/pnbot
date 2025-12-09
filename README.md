@@ -9,14 +9,42 @@ LINE Bot that notifies wages based on shifts recorded in google calendar. Runs o
 
 ![card_demo](https://user-images.githubusercontent.com/35632215/194687278-cce01e01-2b9d-4fc4-abc1-d693cc70a6ce.png)
 
-## Usage
+## Development
 
-### Push to GAS
+This project uses modern tooling for enhanced reproducibility and code quality:
+
+- **Biome**: Fast linter and formatter for TypeScript/JavaScript
+- **esbuild**: Fast TypeScript bundler
+- **clasp**: Google Apps Script deployment tool
+
+### Setup
 
 ```bash
+# Install dependencies
+$ npm install
+
+# Format code
+$ npm run format
+
+# Lint code
+$ npm run lint
+
+# Build TypeScript to JavaScript
+$ npm run build
+```
+
+## Usage
+
+### Build and Deploy to GAS
+
+```bash
+# Build the project
+$ npm run build
+
+# Deploy to Google Apps Script
 $ npm install -g @google/clasp
 $ clasp login
-$ clasp create --type webapp --rootDir ./src
+$ clasp create --type webapp --rootDir ./dist
 $ clasp push
 ```
 

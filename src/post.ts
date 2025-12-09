@@ -12,7 +12,7 @@ function postToLine(
 
   const headers = {
     "Content-Type": "application/json; charset=UTF-8",
-    Authorization: "Bearer " + access_token,
+    Authorization: `Bearer ${access_token}`,
   };
   const options: any = {
     method: "post",
