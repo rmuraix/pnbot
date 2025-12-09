@@ -4,7 +4,7 @@ import { copyFileSync } from "fs";
 const buildOptions = {
   entryPoints: [
     "src/main.ts",
-    "src/calender.ts",
+    "src/calendar.ts",
     "src/post.ts",
     "src/json.ts",
   ],

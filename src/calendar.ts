@@ -18,16 +18,16 @@ function getEvents(
   return events;
 }
 
-function getCalender(): GoogleAppsScript.Calendar.Calendar {
-  let myCal: GoogleAppsScript.Calendar.Calendar;
-
+function getCalendar(): GoogleAppsScript.Calendar.Calendar {
   // Get the value for the Script property 'CAL_ID'.
   const scriptProperties = PropertiesService.getScriptProperties();
   const calId = scriptProperties.getProperty("CAL_ID") || "";
-  myCal = CalendarApp.getCalendarById(calId);
+  const myCal = CalendarApp.getCalendarById(calId);
 
   return myCal;
 }
+
+const MILLISECONDS_TO_HOURS = 3600000;
 
 function getHours(
   events: GoogleAppsScript.Calendar.CalendarEvent[],
@@ -38,7 +38,8 @@ function getHours(
   for (const i of events) {
     if (i.getTitle() === name) {
       workingHours +=
-        (i.getEndTime().getTime() - i.getStartTime().getTime()) / 3600000;
+        (i.getEndTime().getTime() - i.getStartTime().getTime()) /
+        MILLISECONDS_TO_HOURS;
     }
   }
 
