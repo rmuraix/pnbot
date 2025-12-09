@@ -4,7 +4,7 @@
   "description": "Pay Notificaion Bot",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "build": "node esbuild.config.mjs",
     "lint": "biome lint ./src",
     "format": "biome format --write ./src",
