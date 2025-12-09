@@ -22,9 +22,11 @@ function main(): void {
 
   const hourlyWage1: number = parseInt(
     scriptProperties.getProperty("WAGE1") || "0",
+    10,
   );
   const hourlyWage2: number = parseInt(
     scriptProperties.getProperty("WAGE2") || "0",
+    10,
   );
 
   const lastMonth_wages =

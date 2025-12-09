@@ -13,7 +13,7 @@ function getEvents(
     59,
   ); // Last day of month
 
-  let events = myCal?.getEvents(startDate, endDate);
+  const events = myCal?.getEvents(startDate, endDate);
 
   return events;
 }
@@ -35,8 +35,8 @@ function getHours(
 ): number {
   let workingHours: number = 0;
 
-  for (let i of events) {
-    if (i.getTitle() == name) {
+  for (const i of events) {
+    if (i.getTitle() === name) {
       workingHours +=
         (i.getEndTime().getTime() - i.getStartTime().getTime()) / 3600000;
     }
