@@ -1,9 +1,9 @@
 function generateJSON(wages1: number, wages2: number, userID: string) {
-  let textOf_diff: string;
+  let textOfDiff: string;
   if (wages1 < wages2) {
-    textOf_diff = `-￥${Math.abs(wages1 - wages2)}`;
+    textOfDiff = `-￥${Math.abs(wages1 - wages2)}`;
   } else {
-    textOf_diff = `+￥${wages1 - wages2}`;
+    textOfDiff = `+￥${wages1 - wages2}`;
   }
 
   // For Flex Message https://developers.line.biz/en/docs/messaging-api/using-flex-messages/
@@ -87,7 +87,7 @@ function generateJSON(wages1: number, wages2: number, userID: string) {
                       },
                       {
                         type: "text",
-                        text: textOf_diff,
+                        text: textOfDiff,
                         size: "sm",
                         color: "#111111",
                         align: "end",
