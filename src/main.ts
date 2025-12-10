@@ -14,8 +14,11 @@ function main(): void {
     const eventName = scriptProperties.getProperty(`EVENT_NAME${jobIndex}`);
     const wageStr = scriptProperties.getProperty(`WAGE${jobIndex}`);
     
+    if (!eventName && !wageStr) {
+      break; // Both missing, stop discovery
+    }
     if (!eventName || !wageStr) {
-      break;
+      throw new Error(`Incomplete job configuration at index ${jobIndex}: ${!eventName ? 'EVENT_NAME' : 'WAGE'}${jobIndex} is missing`);
     }
     
     const wage = parseInt(wageStr, 10);
