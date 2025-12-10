@@ -22,8 +22,8 @@ function main(): void {
     }
     
     const wage = parseInt(wageStr, 10);
-    if (Number.isNaN(wage)) {
-      throw new Error(`Invalid wage value for WAGE${jobIndex}: ${wageStr}`);
+    if (Number.isNaN(wage) || wage <= 0) {
+      throw new Error(`Invalid wage value for WAGE${jobIndex}: ${wageStr} (must be a positive number)`);
     }
     
     jobs.push({
