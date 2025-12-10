@@ -56,9 +56,11 @@ The following properties must be set.
 
 - `CAL_ID`: Your calender ID(xxxxxxxxxx @group.calender.google.com)
 - `CHANNEL_ACCESS_TOKEN`: [Channel access tokens](https://developers.line.biz/en/docs/messaging-api/channel-access-tokens/) for LINE Messaging API
-- `EVENT_NAME1`, `EVENT_NAME2`: Name on the calendar for your shift
+- `EVENT_NAME1`, `EVENT_NAME2`, ..., `EVENT_NAMEn`: Name on the calendar for your shift (supports any number of jobs)
 - `USER_ID`: Destination to which LINE bots send messages
-- `WAGE1`, `WAGE2`: Hourly wage, corresponding to EVENT_NAME
+- `WAGE1`, `WAGE2`, ..., `WAGEn`: Hourly wage, corresponding to EVENT_NAME (must match the number)
+
+**Note**: You can add as many jobs as you need by incrementing the number (e.g., `EVENT_NAME3` with `WAGE3`, `EVENT_NAME4` with `WAGE4`, etc.). The bot will automatically detect all configured jobs.
 
 ## Contributing
 
