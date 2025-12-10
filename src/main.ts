@@ -8,8 +8,9 @@ function main(): void {
   // Dynamically discover all jobs by checking for EVENT_NAME{n} and WAGE{n} properties
   const jobs: { eventName: string; wage: number }[] = [];
   let jobIndex = 1;
+  const maxJobs = 100; // Safety limit to prevent infinite loops
   
-  while (true) {
+  while (jobIndex <= maxJobs) {
     const eventName = scriptProperties.getProperty(`EVENT_NAME${jobIndex}`);
     const wageStr = scriptProperties.getProperty(`WAGE${jobIndex}`);
     
@@ -17,9 +18,14 @@ function main(): void {
       break;
     }
     
+    const wage = parseInt(wageStr, 10);
+    if (Number.isNaN(wage)) {
+      throw new Error(`Invalid wage value for WAGE${jobIndex}: ${wageStr}`);
+    }
+    
     jobs.push({
       eventName: eventName,
-      wage: parseInt(wageStr, 10),
+      wage: wage,
     });
     
     jobIndex++;
