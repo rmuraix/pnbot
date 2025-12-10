@@ -31,6 +31,9 @@ function main(): void {
     jobIndex++;
   }
 
+  if (jobs.length === 0) {
+    throw new Error("No jobs configured. Please set EVENT_NAME1 and WAGE1 properties.");
+  }
   // Calculate total wages for all jobs
   let lastMonthWages = 0;
   let monthBeforeLastWages = 0;
