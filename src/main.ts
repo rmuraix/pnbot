@@ -4,36 +4,56 @@ function main(): void {
   const monthBeforeLastEvents = getEvents(myCal, 2);
 
   const scriptProperties = PropertiesService.getScriptProperties();
-  // These are the names of the appointments (shifts) you have on your calendar.
-  // Some users may need to be added or removed.
-  // TODO (Developer) Modify the code to be more resistant to change.
-  const eventName1 = scriptProperties.getProperty("EVENT_NAME1") || "";
-  const eventName2 = scriptProperties.getProperty("EVENT_NAME2") || "";
-  const lastMonthWorkingHours1 = getHours(lastMonthEvents, eventName1);
-  const lastMonthWorkingHours2 = getHours(lastMonthEvents, eventName2);
-  const monthBeforeLastWorkingHours1 = getHours(
-    monthBeforeLastEvents,
-    eventName1,
-  );
-  const monthBeforeLastWorkingHours2 = getHours(
-    monthBeforeLastEvents,
-    eventName2,
-  );
 
-  const hourlyWage1: number = parseInt(
-    scriptProperties.getProperty("WAGE1") || "0",
-    10,
-  );
-  const hourlyWage2: number = parseInt(
-    scriptProperties.getProperty("WAGE2") || "0",
-    10,
-  );
+  // Dynamically discover all jobs by checking for EVENT_NAME{n} and WAGE{n} properties
+  const jobs: { eventName: string; wage: number }[] = [];
+  let jobIndex = 1;
+  const maxJobs = 100; // Safety limit to prevent infinite loops
 
-  const lastMonthWages =
-    lastMonthWorkingHours1 * hourlyWage1 + lastMonthWorkingHours2 * hourlyWage2;
-  const monthBeforeLastWages =
-    monthBeforeLastWorkingHours1 * hourlyWage1 +
-    monthBeforeLastWorkingHours2 * hourlyWage2;
+  while (jobIndex <= maxJobs) {
+    const eventName = scriptProperties.getProperty(`EVENT_NAME${jobIndex}`);
+    const wageStr = scriptProperties.getProperty(`WAGE${jobIndex}`);
+
+    if (!eventName && !wageStr) {
+      break; // Both missing, stop discovery
+    }
+    if (!eventName || !wageStr) {
+      throw new Error(
+        `Incomplete job configuration at index ${jobIndex}: ${!eventName ? "EVENT_NAME" : "WAGE"}${jobIndex} is missing`,
+      );
+    }
+
+    const wage = parseInt(wageStr, 10);
+    if (Number.isNaN(wage) || wage <= 0) {
+      throw new Error(
+        `Invalid wage value for WAGE${jobIndex}: ${wageStr} (must be a positive number)`,
+      );
+    }
+
+    jobs.push({
+      eventName,
+      wage,
+    });
+
+    jobIndex++;
+  }
+
+  if (jobs.length === 0) {
+    throw new Error(
+      "No jobs configured. Please set EVENT_NAME1 and WAGE1 properties.",
+    );
+  }
+  // Calculate total wages for all jobs
+  let lastMonthWages = 0;
+  let monthBeforeLastWages = 0;
+
+  for (const job of jobs) {
+    const lastMonthHours = getHours(lastMonthEvents, job.eventName);
+    const monthBeforeLastHours = getHours(monthBeforeLastEvents, job.eventName);
+
+    lastMonthWages += lastMonthHours * job.wage;
+    monthBeforeLastWages += monthBeforeLastHours * job.wage;
+  }
 
   postToLine(lastMonthWages, monthBeforeLastWages);
 }
