@@ -1,6 +1,6 @@
 {
   "name": "pnbot",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Pay Notificaion Bot",
   "main": "index.js",
   "scripts": {
